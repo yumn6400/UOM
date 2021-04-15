@@ -1,0 +1,43 @@
+#ifndef __$_uomdao__dl
+#define __$_uomdao__dl 123
+#include<dl/iuom>
+#include<iostream>
+#include<string.h>
+#include<forward_list>
+#include<dl/uom>
+#include<sqlite3.h>
+#include<dl/iuomdao>
+#include<dl/daoexception>
+using namespace std;
+namespace inventory
+{
+namespace data_layer
+{
+class UnitOfMeasurementDAO:public abc::IUnitOfMeasurementDAO
+{
+class _UnitOfMeasurement
+{
+public:
+int code;
+char title[51];
+};
+class Header
+{
+public:
+int lastGeneratedCode;
+int numberOfRecords;
+};
+public:
+void add(abc::IUnitOfMeasurement *unitOfMeasurement)throw(DAOException);
+void update(abc::IUnitOfMeasurement *unitOfMeasurement)throw(DAOException);
+void remove(int code)throw(DAOException);
+abc::IUnitOfMeasurement *getByCode(int code)throw(DAOException);
+abc::IUnitOfMeasurement *getByTitle(string title)throw(DAOException);
+int getCount()throw(DAOException);
+forward_list<abc::IUnitOfMeasurement *> *getAll()throw(DAOException);
+int codeExist(int code)throw(DAOException);
+int titleExist(string title)throw(DAOException);
+};
+}
+}
+#endif

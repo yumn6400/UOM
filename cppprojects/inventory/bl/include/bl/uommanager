@@ -1,0 +1,50 @@
+#ifndef __$_uommanager__
+#define __$_uommanager__ 123
+#include<iostream>
+#include<bl/iuommanager>
+#include<bl/blexception>
+#include<forward_list>
+using namespace std;
+namespace inventory
+{
+namespace business_layer
+{
+class UnitOfMeasurementTitleComparator
+{
+public:
+bool operator()(string *left,string *right);
+};
+class UnitOfMeasurementManager:public abc::IUnitOfMeasurementManager
+{
+private:
+class _UnitOfMeasurement
+{
+public:
+int code;
+string *title;
+};
+class DataModel
+{
+public:
+map<int,_UnitOfMeasurement *>codeWiseMap;
+map<string *,_UnitOfMeasurement *,UnitOfMeasurementTitleComparator>titleWiseMap;
+DataModel();
+~DataModel();
+void populateDataStructure();
+};
+static DataModel dataModel;
+public:
+void addUnitOfMeasurementManager(abc::IUnitOfMeasurement *unitOfMeasurement)throw(BLException);
+void updateUnitOfMeasurementManager(abc::IUnitOfMeasurement *unitOfMeasurement)throw(BLException);
+void removeUnitOfMeasurementManagerByCode(int code)throw(BLException);
+void removeUnitOfMeasurementManagerByTitle(string &title)throw(BLException);
+abc::IUnitOfMeasurement *getUnitOfMeasurementByCode(int code)throw(BLException);
+abc::IUnitOfMeasurement *getUnitOfMeasurementByTitle(string &title)throw(BLException);
+forward_list<abc::IUnitOfMeasurement *> *getAllUnitOfMeasurement()throw(BLException);
+int unitOfMeasurementCodeExist(int code)throw(BLException);
+int unitOfMeasurementTitleExist(string &title)throw(BLException);
+int getUnitOfMeasurementCount()throw(BLException);
+};
+}
+}
+#endif

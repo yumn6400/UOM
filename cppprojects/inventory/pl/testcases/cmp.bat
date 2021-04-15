@@ -1,0 +1,1 @@
+g++ -std=c++0x UnitOfMeasurementTest.cpp -o UnitOfMeasurementTest.exe -I ..\..\dl\include -I ..\..\bl\include -I ..\..\..\tmcommon\include -I C:\sqlite3\include -L ..\..\dl\lib -L ..\..\bl\lib -L ..\..\..\tmcommon\lib -L C:\sqlite3\lib -l inventorybl -l inventorydl -l tmcommon -l sqlite3
